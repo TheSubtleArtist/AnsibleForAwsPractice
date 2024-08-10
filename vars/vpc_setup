@@ -20,4 +20,6 @@ zone1: "us-east-1a"
 zone2: "us-east-1b"
 zone3: "us-east-1c"
 
-
+# Bastion Variables
+bastion_ami: ami-0b1ca8b711f1d1fd7
+MYIP: 97.107.199.151/32
