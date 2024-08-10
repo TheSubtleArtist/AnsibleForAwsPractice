@@ -26,7 +26,6 @@
         mode: 0400
       when: vprokey_out.changed # only saves the key when if the key exist before the exectuion of this play
 
-
     - name: Create load balancer security group
       ec2_group:
         name: vproELB-sg
@@ -41,7 +40,7 @@
       register: vproELBSG_out
 
     - name: Create vprofile stack security group
-      ec2_security_group:
+      ec2_group:
         name: vproStack-sg
         description: Allow port 22 from everywhere and all ports within the sg
         vpc_id: "{{vpcid}}"
@@ -59,7 +58,7 @@
       register: vproStackSG_out
 
     - name: update vprofile stack security group
-      ec2_security_group:
+      ec2_group:
         name: vproStack-sg
         description: Allow port 22 from everywhere and all ports within the sg
         vpc_id: "{{vpcid}}"
