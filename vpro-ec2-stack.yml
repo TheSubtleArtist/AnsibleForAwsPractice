@@ -24,5 +24,5 @@
         content: "{{vprokey_out.key.private_key}}"
         dest: "./loginkey_vpro.pem"
         mode: 0400
-      when: vprofkey_out.changed # only saves the key when if the key exist before the exectuion of this play
+      when: vprokey_out.changed # only saves the key when if the key exist before the exectuion of this play
 
