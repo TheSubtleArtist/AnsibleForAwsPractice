@@ -54,10 +54,11 @@
       register: bastionHost_out
     
     - debug:
-        var: "{{item}}"
-      loop:
-        - bastionSG_out.group_id
-        - bastionHost_out
+        var: bastionHost_out
+        #var: "{{item}}"
+      #loop:
+      #  - bastionSG_out.group_id
+      #  - bastionHost_out
 
     - name: Copy host ids to file
       blockinfile:
