@@ -57,7 +57,7 @@
         var: "{{item}}"
       loop:
         - bastionSG_out.group_id
-        - bastionHost_out
+        - bastionHost_out.instance_ids
 
     - name: Copy host ids to file
       blockinfile:
@@ -65,7 +65,7 @@
         backup: false
         block: |
           BastionHostSGid: "{{bastionSG_out.group_id}}"
-          BastionHostid: "{{bastionHost_out.instances.instance_id}}"
+          BastionHostid: "{{bastionHost_out.instance_ids}}"
 
 
 
