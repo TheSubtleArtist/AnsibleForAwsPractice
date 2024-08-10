@@ -57,6 +57,16 @@
         vpc_subnet_id: "{{ pubsub1id }}"
       register: bastionHost_out 
 
+    - name: Copy host ids to file
+      blockinfile:
+        path: vars/output_vars
+        backup: yes
+        block: |
+          BastionHostSGid: "{{BastionSG_out.group_id}}"
+          BastionHostid: "{{bastionHost_out.instance_id}}"
+
+
+
         
         
         

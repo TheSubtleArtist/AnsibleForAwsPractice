@@ -26,3 +26,34 @@
         mode: 0400
       when: vprokey_out.changed # only saves the key when if the key exist before the exectuion of this play
 
+
+    - name: Create load balancer security group
+      ec2_security_group:
+        name: vproELB-sg
+        description: Allow port 80 from everywhere and all ports within the sg
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+      register: vproELBSG_out
+
+    - name: Create vprofile stack security group
+      ec2_security_group:
+        name: vproStack-sg
+        description: Allow port 22 from everywhere and all ports within the sg
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        purge_rules: no
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            group_id: "{{vproELBSG_out.group_id}}"
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            group_id: "{{BastionHostSGid:}}"
+      register: vproStackSG_out
