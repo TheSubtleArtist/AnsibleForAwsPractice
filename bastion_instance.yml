@@ -60,7 +60,7 @@
     - name: Copy host ids to file
       blockinfile:
         path: vars/output_vars
-        backup: yes
+        backup: false
         block: |
           BastionHostSGid: "{{BastionSG_out.group_id}}"
           BastionHostid: "{{bastionHost_out.instance_id}}"

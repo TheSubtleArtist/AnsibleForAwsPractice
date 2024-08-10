@@ -55,5 +55,17 @@
           - proto: tcp
             from_port: 22
             to_port: 22
-            group_id: "{{BastionHostSGid:}}"
+            group_id: "{{BastionHostSGid}}"
+      register: vproStackSG_out
+
+    - name: update vprofile stack security group
+      ec2_security_group:
+        name: vproStack-sg
+        description: Allow port 22 from everywhere and all ports within the sg
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        purge_rules: no
+        rules:
+          - proto: all
+            group_id: "{{vproStackSG_out.group_id}}"
       register: vproStackSG_out
