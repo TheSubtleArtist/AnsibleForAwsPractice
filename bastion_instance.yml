@@ -57,7 +57,7 @@
         var: "{{item}}"
       loop:
         - bastionSG_out.group_id
-        - bastionHost_out.instances.instance_id
+        - bastionHost_out
 
     - name: Copy host ids to file
       blockinfile:
