@@ -1,0 +1,4 @@
+*.pem
+*credentials.csv
+gitToken.txt
+AnsibleControllerSetup.sh
