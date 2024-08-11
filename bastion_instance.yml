@@ -66,7 +66,7 @@
         backup: false
         block: |
           BastionHostSGid: "{{bastionSG_out.group_id}}"
-          BastionHostid: "{{bastionHost_out.instances.instance_id}}"
+          BastionHostid: "{{bastionHost_out.instance_ids}}"
 
 
 
