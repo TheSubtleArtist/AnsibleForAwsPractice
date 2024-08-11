@@ -68,3 +68,111 @@
           - proto: all
             group_id: "{{vproStackSG_out.group_id}}"
       register: vproStackSG_out
+
+    - name: Create Nginx web01
+      ec2_instance:
+        key_name: vprokey
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image_id: "{{ nginx_ami }}"
+        wait: yes
+        wait_timeout: 300
+        tags:
+          Name: "Bastion_host"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1
+        security_group: "{{vproStackGS_out.group_id}}"
+        vpc_subnet_id: "{{ prvsub1id }}"
+      register: web01_out
+
+    - name: Create Nginx web01
+      ec2_instance:
+        key_name: vprokey
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image_id: "{{ nginx_ami }}"
+        wait: yes
+        wait_timeout: 300
+        tags:
+          Name: "nginx_host"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1
+        security_group: "{{vproStackGS_out.group_id}}"
+        vpc_subnet_id: "{{ prvsub1id }}"
+      register: web01_out
+
+    - name: Create tomcat web01
+      ec2_instance:
+        key_name: vprokey
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image_id: "{{ tomcat_ami }}"
+        wait: yes
+        wait_timeout: 300
+        tags:
+          Name: "tomcat_host"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1
+        security_group: "{{vproStackGS_out.group_id}}"
+        vpc_subnet_id: "{{ prvsub1id }}"
+      register: app01_out
+
+    - name: Create memcached mc01
+      ec2_instance:
+        key_name: vprokey
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image_id: "{{ memcached_ami }}"
+        wait: yes
+        wait_timeout: 300
+        tags:
+          Name: "memcached_host"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1
+        security_group: "{{vproStackGS_out.group_id}}"
+        vpc_subnet_id: "{{ prvsub1id }}"
+      register: mc01_out
+
+    - name: Create Rabbitmq rmq01
+      ec2_instance:
+        key_name: vprokey
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image_id: "{{ rabbitmq_ami }}"
+        wait: yes
+        wait_timeout: 300
+        tags:
+          Name: "rabbitmq_host"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1
+        security_group: "{{vproStackGS_out.group_id}}"
+        vpc_subnet_id: "{{ prvsub1id }}"
+      register: rmq01_out
+
+    - name: Create Mysql db01
+      ec2_instance:
+        key_name: vprokey
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image_id: "{{ mysql_ami }}"
+        wait: yes
+        wait_timeout: 300
+        tags:
+          Name: "mysql_host"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1
+        security_group: "{{vproStackGS_out.group_id}}"
+        vpc_subnet_id: "{{ prvsub1id }}"
+      register: db01_out
+
+    - debug:
+        var: db01_out.tagged_instances[0].id
+
+
+   
