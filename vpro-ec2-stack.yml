@@ -78,7 +78,7 @@
         wait: yes
         wait_timeout: 300
         tags:
-          Name: "Bastion_host"
+          Name: "nginx_host"
           Project: Vprofile
           Owner: DevOps Team
         exact_count: 1
@@ -112,7 +112,7 @@
         wait: yes
         wait_timeout: 300
         tags:
-          Name: "memcached_host"
+          Name: "memcache_host"
           Project: Vprofile
           Owner: DevOps Team
         exact_count: 1
