@@ -86,23 +86,6 @@
         vpc_subnet_id: "{{ prvsub1id }}"
       register: web01_out
 
-    - name: Create Nginx web01
-      ec2_instance:
-        key_name: vprokey
-        region: "{{ region }}"
-        instance_type: t2.micro
-        image_id: "{{ nginx_ami }}"
-        wait: yes
-        wait_timeout: 300
-        tags:
-          Name: "nginx_host"
-          Project: Vprofile
-          Owner: DevOps Team
-        exact_count: 1
-        security_group: "{{vproStackSG_out.group_id}}"
-        vpc_subnet_id: "{{ prvsub1id }}"
-      register: web01_out
-
     - name: Create tomcat web01
       ec2_instance:
         key_name: vprokey
@@ -125,7 +108,7 @@
         key_name: vprokey
         region: "{{ region }}"
         instance_type: t2.micro
-        image_id: "{{ memcached_ami }}"
+        image_id: "{{ memcache_ami }}"
         wait: yes
         wait_timeout: 300
         tags:
@@ -142,7 +125,7 @@
         key_name: vprokey
         region: "{{ region }}"
         instance_type: t2.micro
-        image_id: "{{ rabbitmq_ami }}"
+        image_id: "{{ rmq_ami }}"
         wait: yes
         wait_timeout: 300
         tags:
