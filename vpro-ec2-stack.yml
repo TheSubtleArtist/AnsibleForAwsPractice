@@ -159,13 +159,13 @@
         path: datadump
         backup: false
         block: |
-          vproELBSG_out
-          vproStackSG_out
-          web01_out
-          app01_out
-          mc01_out
-          rmq01_out
-          db01_out
+          "{{vproELBSG_out}}"
+          "{{vproStackSG_out}}"
+          "{{web01_out}}"
+          "{{app01_out}}"
+          "{{mc01_out}}"
+          "{{rmq01_out}}"
+          "{{db01_out}}"
 
     - local_action:
         module: ec2_elb_lb
