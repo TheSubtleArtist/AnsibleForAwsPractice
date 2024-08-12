@@ -10,7 +10,7 @@
     - name: Import VPC ID variables
       include_vars: vars/output_vars
     
-    - name: Import VPC ID variables
+    - name: Import VPC ID variablesgit
       include_vars: vars/vprofileprostack
 
     - name: create a new EC2 key pair, returns generated private key # does not display the private key
@@ -22,7 +22,7 @@
     - name: store private key
       copy: 
         content: "{{vprokey_out.key.private_key}}"
-        dest: "loginkey_vpro.pem"
+        dest: "./loginkey_vpro.pem"
         mode: 0600
       when: vprokey_out.changed # only saves the key when if the key exist before the exectuion of this play
 
@@ -208,7 +208,7 @@
       copy:
         src: loginkey_vpro.pem
         dest: provision-stack/loginkey_vpro.pem
-        mode: '0400'
+        mode: '0600'
 
 
     - name: Insert/Update Inventory file provision-stack/inventory-vpro
