@@ -23,7 +23,7 @@
       copy: 
         content: "{{vprokey_out.key.private_key}}"
         dest: "./loginkey_vpro.pem"
-        mode: 0400
+        mode: 0600
       when: vprokey_out.changed # only saves the key when if the key exist before the exectuion of this play
 
     - name: Create load balancer security group
