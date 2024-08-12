@@ -74,6 +74,7 @@
         key_name: 11AnsibleAWS
         region: "{{ region }}"
         instance_type: t2.micro
+        instance_role: "11AnsibleAdmin"
         image_id: "{{ ansible_ami }}"
         wait: yes
         wait_timeout: 300
