@@ -1,15 +1,15 @@
-vpcid: vpc-0e5adeab426f1cafe
-pubsub1id: subnet-018bf05447325cbb2
-pubsub2id: subnet-08fc9718a75a18ce8
-pubsub3id: subnet-0b86af2878be9c924
-prvsub1id: subnet-069ee6d3abceb3843
-prvsub2id: subnet-059f14ee26dfdee4a
-prvsub3id: subnet-0afa7adf37bdca1f6
-igwid: igw-0cce7af377712c49a
-pubRTid: rtb-01a5a73fe8490f1d1
-NATGWid: nat-0faefa02f7bff960c
-privRTid: rtb-0fd961715876b8973
+region: us-east-1
+vpcid: vpc-0337b1a52501df809
+pubsub1id: subnet-042914500f53e42b5
+pubsub2id: subnet-0d6bae33b9dd82d74
+pubsub3id: subnet-03072b3b0a4897f35
+prvsub1id: subnet-0de56629e90a79b98
+prvsub2id: subnet-0f37ee2d77ffdf8f6
+prvsub3id: subnet-0c291af4abf3a4dd0
+igwid: igw-070ecee3190f1fb5d
+pubRTid: rtb-06cf42b6ce9f359bf
+NATGWid: nat-0b63c3ccc61ec52c3
+privRTid: rtb-073b8e4871b608673
 # BEGIN ANSIBLE MANAGED BLOCK
-BastionHostSGid: "sg-0fa547900f95cc52f"
-BastionHostid: "['i-0b43ec2e5086a1bd3']"
+BastionHostSGid: "sg-0e7f9dad71b447c0b"
 # END ANSIBLE MANAGED BLOCK
