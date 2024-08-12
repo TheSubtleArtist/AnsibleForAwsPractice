@@ -67,7 +67,24 @@
         rules:
           - proto: all
             group_id: "{{vproStackSG_out.group_id}}"
-      register: vproStackSG_ou
+      register: vproStackSG_out
+
+    - name: Create Ansible Controller Within the VPC
+      ec2_instance:
+        key_name: 11AnsibleAWS
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image_id: "{{ ansible_ami }}"
+        wait: yes
+        wait_timeout: 300
+        tags:
+          Name: "ansible_controller"
+          Project: Vprofile
+          Owner: DevOps Team
+        exact_count: 1
+        security_group: "{{bastionSG_out.group_id}}"
+        vpc_subnet_id: "{{ prvsub2id }}"
+      register: controller_out
 
     - name: Create Nginx web01
       ec2_instance:
@@ -204,12 +221,6 @@
           mc01_ip: {{ mc01_out.instances[0].network_interfaces[0].private_ip_address }}
           db01_ip: {{ db01_out.instances[0].network_interfaces[0].private_ip_address }}
 
-    - name: Copy login key to provision_stack directory
-      copy:
-        src: loginkey_vpro.pem
-        dest: provision-stack/loginkey_vpro.pem
-        mode: '0600'
-
 
     - name: Insert/Update Inventory file provision-stack/inventory-vpro
       blockinfile:
@@ -251,6 +262,12 @@
           ansible_user=ubuntu
           ansible_ssh_private_key_file=loginkey_vpro.pem
           #ansible_python_interpreter=/usr/bin/python3
+
+    - name: Copy login key to provision_stack directory
+      copy:
+        content: loginkey_vpro.pem
+        dest: provision-stack/loginkey_vpro.pem
+        mode: '0600'
           
 
 
