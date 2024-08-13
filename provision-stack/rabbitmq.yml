@@ -40,7 +40,7 @@
         - package
 
     - apt_repository:
-        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/rabbitmq.E495BB49CC4BBE5B.asc] https://ppa2.novemberain.com/rabbitmq/rabbitmq-erlang/deb/debian {{ ansible_distribution_release }} main"
+        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/rabbitmq.E495BB49CC4BBE5B.asc] https://ppa2.novemberain.com/rabbitmq/rabbitmq-erlang/deb/debian focal main"
         state: present
         update_cache: true
       tags:
