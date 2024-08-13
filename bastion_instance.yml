@@ -19,7 +19,7 @@
       copy: 
         content: "{{key_out.key.private_key}}"
         dest: "./bastion-key.pem"
-        mode: 0400
+        mode: 0600
       when: key_out.changed # only saves the key when if the key exist before the exectuion of this play
 
     - name: Create Security Group for bastion host
@@ -52,13 +52,6 @@
         security_group: "{{bastionSG_out.group_id}}"
         vpc_subnet_id: "{{ pubsub1id }}"
       register: bastionHost_out
-    
-    - debug:
-        var: bastionHost_out
-        #var: "{{item}}"
-      #loop:
-      #  - bastionSG_out.group_id
-      #  - bastionHost_out
 
     - name: Copy host ids to file
       blockinfile:
@@ -66,6 +59,13 @@
         backup: false
         block: |
           BastionHostSGid: "{{bastionSG_out.group_id}}"
+
+    - name: Copy Bastion Host information to file
+      blockinfile:
+        path: datadump
+        backup: false
+        block: |
+          BastionHostInfo: "{{ bastionSG_out }}"
 
 
 
