@@ -14,6 +14,9 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 sudo ./aws/install
 
+git config --global user.name = thesubtleartist
+git config --global user.email = thesubtleartist@yahoo.com
+
 echo 'y' | sudo ufw enable
 sudo ufw allow 22/tcp
 sudo ufw reload
