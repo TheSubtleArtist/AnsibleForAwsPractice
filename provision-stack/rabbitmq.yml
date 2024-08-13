@@ -30,12 +30,12 @@
         - name: Download gpg keys for rabbitmq-server repository
           ansible.builtin.apt_key:
             id: 9F4587F226208342
-            url: https://ppa.novemberain.com/gpg.9F4587F226208342.key
+            url: https://github.com/rabbitmq/signing-keys/releases/download/3.0/rabbitmq-release-signing-key.asc
             keyring: /etc/apt/trusted.gpg.d/rabbitmq-9F4587F226208342.gpg
         
         - name: Ensure rabbitmq-server repository is configured
           ansible.builtin.apt_repository:
-            repo: deb [signed-by=/etc/apt/trusted.gpg.d/rabbitmq-9F4587F226208342.gpg] https://ppa1.novemberain.com/rabbitmq/rabbitmq-server/deb/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main
+            repo: deb [signed-by=/etc/apt/trusted.gpg.d/rabbitmq-9F4587F226208342.gpg] https://ppa1.novemberain.com/rabbitmq/rabbitmq-server/deb/ubuntu focal main
             state: present
 
     - name: Install Rabbit MQ
