@@ -39,10 +39,11 @@
       tags:
         - package
 
-    - apt_repository:
-        repo: deb-src [signed-by=/usr/share/keyrings/rabbitmq.9F4587F226208342.gpg] https://ppa1.rabbitmq.com/rabbitmq/rabbitmq-server/deb/ubuntu focal main
-        state: present
-        update_cache: true
+    - name: add the official rabbitmq repository
+      copy:
+        src=rabbitmq.list
+        dest=/etc/apt/sources.list.d/
+        backup=yes
       tags:
         - package
 
