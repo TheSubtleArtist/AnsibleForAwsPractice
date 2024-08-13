@@ -167,17 +167,17 @@
         path: datadump
         backup: false
         block: |
-        vpc_id: "{{vpcout.vpc.id}}"
-        pubsub1_id: "{{pubsub1_out.subnet.id}}"
-        pubsub2_id: "{{pubsub2_out.subnet.id}}"
-        pubsub3_id: "{{pubsub3_out.subnet.id}}"
-        prvsub1_id: "{{pubsub1_out.subnet.id}}"
-        prvsub2_id: "{{pubsub2_out.subnet.id}}"
-        prvsub3_id: "{{pubsub3_out.subnet.id}}"
-        igateway_id: "{{igw_out.gateway_id}}"
-        pubRT_id: "{{pubRT_out.route_table.id}}"
-        prvRT_id: "{{prvRT_out.route_table.id}}"
-        natGateway_id: "{{NATGW_out.nat_gateway_id}}"
+          vpc_id: "{{vpcout.vpc.id}}"
+          pubsub1_id: "{{pubsub1_out.subnet.id}}"
+          pubsub2_id: "{{pubsub2_out.subnet.id}}"
+          pubsub3_id: "{{pubsub3_out.subnet.id}}"
+          prvsub1_id: "{{pubsub1_out.subnet.id}}"
+          prvsub2_id: "{{pubsub2_out.subnet.id}}"
+          prvsub3_id: "{{pubsub3_out.subnet.id}}"
+          igateway_id: "{{igw_out.gateway_id}}"
+          pubRT_id: "{{pubRT_out.route_table.id}}"
+          prvRT_id: "{{prvRT_out.route_table.id}}"
+          natGateway_id: "{{NATGW_out.nat_gateway_id}}"
 
     - name: Full Datadump
       blockinfile:
