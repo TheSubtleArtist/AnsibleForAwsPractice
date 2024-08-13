@@ -154,19 +154,6 @@
         vpc_subnet_id: "{{ prvsub1id }}"
       register: db01_out
 
-    - name: Dump all data
-      blockinfile:
-        path: datadump
-        backup: false
-        block: |
-          "{{vproELBSG_out}}"
-          "{{vproStackSG_out}}"
-          "{{web01_out}}"
-          "{{app01_out}}"
-          "{{mc01_out}}"
-          "{{rmq01_out}}"
-          "{{db01_out}}"
-
     - debug:
         var: "{{item}}"
       loop:
@@ -251,7 +238,30 @@
         content: loginkey_vpro.pem
         dest: provision-stack/loginkey_vpro.pem
         mode: '0600'
-          
+    
+    - name: Dump IP Addresses
+      blockinfile:
+        path: datadump
+        backup: false
+        block: |
+          web01_ip: "{{web01_out.instances[0].network_interfaces[0].private_ip_address}}"
+          app01_ip: "{{app01_out.instances[0].network_interfaces[0].private_ip_address}}"
+          mc01_ip: "{{mc01_out.instances[0].network_interfaces[0].private_ip_address}}"
+          rmq01_ip: "{{rmq01_out.instances[0].network_interfaces[0].private_ip_address}}"
+          db01_ip: "{{db01_out.instances[0].network_interfaces[0].private_ip_address}}"
+
+    - name: Full Dump
+      blockinfile:
+        path: datadump
+        backup: false
+        block: |
+          ElasticLoadBalancer: "{{vproELBSG_out}}"
+          StackSecurityGroup: "{{vproStackSG_out}}"
+          web01_dump: "{{web01_out}}"
+          app01_dump: "{{app01_out}}"
+          mc01_dump: "{{mc01_out}}"
+          rmq01_dump: "{{rmq01_out}}"
+          db01_dump: "{{db01_out}}"
 
 
 
