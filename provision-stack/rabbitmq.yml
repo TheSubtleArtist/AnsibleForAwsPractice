@@ -36,6 +36,7 @@
         repo: deb http://www.rabbitmq.com/debian/ focal main
         state: present
         update_cache: true
+        validate_certs: false
       tags:
         - package
 
