@@ -17,6 +17,8 @@ sudo ./aws/install
 git config --global user.name = thesubtleartist
 git config --global user.email = thesubtleartist@yahoo.com
 
+git clone https://github.com/TheSubtleArtist/AnsibleForAwsPractice.git
+
 echo 'y' | sudo ufw enable
 sudo ufw allow 22/tcp
 sudo ufw reload

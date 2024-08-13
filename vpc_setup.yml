@@ -25,7 +25,7 @@
           Name: vprofile-pubsub1
       register: pubsub1_out
 
-    - name: create PubSub2 in Zone1
+    - name: create PubSub2 in Zone2
       ec2_vpc_subnet:
         vpc_id: "{{vpcout.vpc.id}}"
         region: "{{region}}"
@@ -37,7 +37,7 @@
           Name: vprofile-pubsub2
       register: pubsub2_out
 
-    - name: create PubSub3 in Zone1
+    - name: create PubSub3 in Zone3
       ec2_vpc_subnet:
         vpc_id: "{{vpcout.vpc.id}}"
         region: "{{region}}"
@@ -46,7 +46,7 @@
         cidr: "{{PubSub3Cidr}}"
         map_public: yes
         resource_tags:
-          Name: vprofile-pubsub2
+          Name: vprofile-pubsub3
       register: pubsub3_out
 
     - name: create PrvSub1 in Zone1
@@ -58,10 +58,10 @@
         cidr: "{{PrvSub1Cidr}}"
         map_public: yes
         resource_tags:
-          Name: vprofile-pubsub1
+          Name: vprofile-prvsub1
       register: prvsub1_out
 
-    - name: create PrvSub2 in Zone1
+    - name: create PrvSub2 in Zone2
       ec2_vpc_subnet:
         vpc_id: "{{vpcout.vpc.id}}"
         region: "{{region}}"
@@ -70,10 +70,10 @@
         cidr: "{{PrvSub2Cidr}}"
         map_public: yes
         resource_tags:
-          Name: vprofile-pubsub2
+          Name: vprofile-prvsub2
       register: prvsub2_out
 
-    - name: create PrvSub3 in Zone1
+    - name: create PrvSub3 in Zone3
       ec2_vpc_subnet:
         vpc_id: "{{vpcout.vpc.id}}"
         region: "{{region}}"
@@ -82,7 +82,7 @@
         cidr: "{{PrvSub3Cidr}}"
         map_public: yes
         resource_tags:
-          Name: vprofile-pubsub2
+          Name: vprofile-prvsub3
       register: prvsub3_out
 
     - name: Create Internet gateway with tags

@@ -69,24 +69,6 @@
             group_id: "{{vproStackSG_out.group_id}}"
       register: vproStackSG_out
 
-    - name: Create Ansible Controller Within the VPC
-      ec2_instance:
-        key_name: 11AnsibleAWS
-        region: "{{ region }}"
-        instance_type: t2.micro
-        instance_role: "arn:aws:iam::211125517912:role/11AnsibleAdmin"
-        image_id: "{{ ansible_ami }}"
-        wait: yes
-        wait_timeout: 300
-        tags:
-          Name: "vpcAnsibleController"
-          Project: Vprofile
-          Owner: DevOps Team
-        exact_count: 1
-        security_group: "{{ bastionSG_out.group_id }}"
-        vpc_subnet_id: "{{ pubsub2id }}"
-      register: controller_out
-
     - name: Create Nginx web01
       ec2_instance:
         key_name: vprokey
