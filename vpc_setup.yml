@@ -157,22 +157,41 @@
           "vpcid: {{vpcout.vpc.id}}\npubsub1id: {{pubsub1_out.subnet.id}}\npubsub2id: {{pubsub2_out.subnet.id}}\npubsub3id: {{pubsub3_out.subnet.id}}\nprvsub1id: {{prvsub1_out.subnet.id}}\nprvsub2id: {{prvsub2_out.subnet.id}}\nprvsub3id: {{prvsub3_out.subnet.id}}\nigwid: {{igw_out.gateway_id}}\npubRTid: {{pubRT_out.route_table.id}}\nNATGWid: {{NATGW_out.nat_gateway_id}}\nprivRTid: {{prvRT_out.route_table.id}}"
         dest: vars/output_vars
 
-    - debug:
-        var: "{{item}}"
-      loop:
-        - vpcout.vpc.id
-        - pubsub1_out.subnet.id
-        - pubsub2_out.subnet.id
-        - pubsub3_out.subnet.id
-        - prvsub1_out.subnet.id
-        - prvsub2_out.subnet.id
-        - prvsub3_out.subnet.id
-        - igw_out.gateway_id
-        - pubRT_out.route_tables.id
-        - NATGW_out.nat_gateway_id
-        - prvRT_out.route_table.id
-
     - name: Create variables file for vpc output
       copy:
          content: "region: {{ region }}\nvpcid: {{ vpcout.vpc.id }}\npubsub1id: {{ pubsub1_out.subnet.id }}\npubsub2id: {{ pubsub2_out.subnet.id }}\npubsub3id: {{ pubsub3_out.subnet.id }}\nprvsub1id: {{ prvsub1_out.subnet.id }}\nprvsub2id: {{ prvsub2_out.subnet.id }}\nprvsub3id: {{ prvsub3_out.subnet.id }}\nigwid: {{ igw_out.gateway_id }}\npubRTid: {{ pubRT_out.route_table.id }}\nNATGWid: {{ NATGW_out.nat_gateway_id }}\nprivRTid: {{ prvRT_out.route_table.id }}\n"
          dest: vars/output_vars
+
+    - name: ID number Datadump
+      blockinfile:
+        path: datadump
+        backup: false
+        block: |
+        vpc_id: "{{vpcout.vpc.id}}"
+        pubsub1_id: "{{pubsub1_out.subnet.id}}"
+        pubsub2_id: "{{pubsub2_out.subnet.id}}"
+        pubsub3_id: "{{pubsub3_out.subnet.id}}"
+        prvsub1_id: "{{pubsub1_out.subnet.id}}"
+        prvsub2_id: "{{pubsub2_out.subnet.id}}"
+        prvsub3_id: "{{pubsub3_out.subnet.id}}"
+        igateway_id: "{{igw_out.gateway_id}}"
+        pubRT_id: "{{pubRT_out.route_tables.id}}"
+        prvRT_id: "{{prvRT_out.route_table.id}}"
+        natGateway_id: "{{NATGW_out.nat_gateway_id}}"
+
+    - name: Full Datadump
+      blockinfile:
+        path: datadump
+        backup: false
+        block: |
+          vpcInfo: "{{ vpcout }}"
+          pubsub1: "{{pubsub1_out}}"
+          pubsub2: "{{pubsub2_out}}"
+          pubsub3: "{{pubsub3_out}}"
+          prvsub1: "{{prvsub1_out}}"
+          prvsub2: "{{prvsub2_out}}"
+          prvsub3: "{{prvsub3_out}}"
+          igateway: "{{igw_out}}"
+          pubRouteTable: "{{pubRT_out}}"
+          prvRouteTeable: "{{prvRT_out}}"
+          natGateway: "{{NATGW_out}}"
