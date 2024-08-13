@@ -33,7 +33,7 @@
         - package
 
     - apt_repository:
-        repo: deb https://dl.bintray.com/rabbitmq/debian focal main
+        repo: deb https://ppa1.rabbitmq.com/rabbitmq/rabbitmq-server/deb/ubuntu focal main
         state: present
       tags:
         - package
