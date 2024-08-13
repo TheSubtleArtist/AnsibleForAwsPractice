@@ -29,7 +29,6 @@
       block:
         - name: Download gpg keys for rabbitmq-server repository
           ansible.builtin.apt_key:
-            id: 9F4587F226208342
             url: https://github.com/rabbitmq/signing-keys/releases/download/3.0/rabbitmq-release-signing-key.asc
             keyring: /etc/apt/trusted.gpg.d/rabbitmq-9F4587F226208342.gpg
         
