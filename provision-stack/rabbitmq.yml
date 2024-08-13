@@ -27,16 +27,15 @@
 
     - name: Add an Apt signing key, uses whichever key is at the URL
       apt_key:
-        url: https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+        url: https://github.com/rabbitmq/signing-keys/releases/download/3.0/cloudsmith.rabbitmq-server.9F4587F226208342.key
         state: present
       tags:
         - package
 
     - apt_repository:
-        repo: deb http://www.rabbitmq.com/debian/ focal main
+        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/rabbitmq.E495BB49CC4BBE5B.asc] https://ppa2.novemberain.com/rabbitmq/rabbitmq-erlang/deb/debian {{ ansible_distribution_release }} main"
         state: present
         update_cache: true
-        validate_certs: false
       tags:
         - package
 
