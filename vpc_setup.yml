@@ -175,7 +175,7 @@
         prvsub2_id: "{{pubsub2_out.subnet.id}}"
         prvsub3_id: "{{pubsub3_out.subnet.id}}"
         igateway_id: "{{igw_out.gateway_id}}"
-        pubRT_id: "{{pubRT_out.route_tables.id}}"
+        pubRT_id: "{{pubRT_out.route_table.id}}"
         prvRT_id: "{{prvRT_out.route_table.id}}"
         natGateway_id: "{{NATGW_out.nat_gateway_id}}"
 
